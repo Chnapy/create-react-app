@@ -4,7 +4,7 @@
   "description": "Fork of react-scripts for the project timeflies",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Chnapy/create-react-app.git",
+    "url": "https://github.com/Chnapy/timeflies-create-react-app.git",
     "directory": "packages/react-scripts"
   },
   "license": "MIT",
