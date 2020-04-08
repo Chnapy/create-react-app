@@ -306,9 +306,12 @@ module.exports = function(webpackEnv) {
       // https://github.com/facebook/create-react-app/issues/290
       // `web` extension prefixes have been added for better support
       // for React Native Web.
+      // Remove json ext from the list to be handled only by the file-loader.
       extensions: paths.moduleFileExtensions
         .map(ext => `.${ext}`)
-        .filter(ext => useTypeScript || !ext.includes('ts')),
+        .filter(
+          ext => (useTypeScript || !ext.includes('ts')) && ext !== '.json'
+        ),
       alias: {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
@@ -558,12 +561,13 @@ module.exports = function(webpackEnv) {
               loader: require.resolve('file-loader'),
               // Exclude `js` files to keep "css" loader working as it injects
               // its runtime that would otherwise be processed through "file" loader.
-              // Also exclude `html` and `json` extensions so they get processed
+              // Also exclude `html` so it get processed
               // by webpacks internal loaders.
-              exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+              exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/],
               options: {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
+              type: 'javascript/auto',
             },
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.

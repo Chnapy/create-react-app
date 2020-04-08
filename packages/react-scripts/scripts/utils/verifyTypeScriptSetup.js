@@ -121,7 +121,7 @@ function verifyTypeScriptSetup() {
       value: 'node',
       reason: 'to match webpack resolution',
     },
-    resolveJsonModule: { value: true, reason: 'to match webpack loader' },
+    resolveJsonModule: { value: false, reason: 'to match webpack loader' },
     isolatedModules: { value: true, reason: 'implementation limitation' },
     noEmit: { value: true },
     jsx: {
@@ -200,7 +200,6 @@ function verifyTypeScriptSetup() {
 
     if (suggested != null) {
       if (parsedCompilerOptions[option] === undefined) {
-        appTsConfig.compilerOptions[option] = suggested;
         messages.push(
           `${coloredOption} to be ${chalk.bold(
             'suggested'
@@ -208,7 +207,6 @@ function verifyTypeScriptSetup() {
         );
       }
     } else if (parsedCompilerOptions[option] !== valueToCheck) {
-      appTsConfig.compilerOptions[option] = value;
       messages.push(
         `${coloredOption} ${chalk.bold(
           valueToCheck == null ? 'must not' : 'must'
@@ -220,7 +218,6 @@ function verifyTypeScriptSetup() {
 
   // tsconfig will have the merged "include" and "exclude" by this point
   if (parsedTsConfig.include == null) {
-    appTsConfig.include = ['src'];
     messages.push(
       `${chalk.cyan('include')} should be ${chalk.cyan.bold('src')}`
     );
@@ -236,10 +233,12 @@ function verifyTypeScriptSetup() {
         )
       );
       console.log();
+      writeJson(paths.appTsConfig, appTsConfig);
     } else {
+      // logging, but no writting
       console.warn(
         chalk.bold(
-          'The following changes are being made to your',
+          'The following changes should be made to your',
           chalk.cyan('tsconfig.json'),
           'file:'
         )
@@ -249,7 +248,6 @@ function verifyTypeScriptSetup() {
       });
       console.warn();
     }
-    writeJson(paths.appTsConfig, appTsConfig);
   }
 
   // Reference `react-scripts` types
