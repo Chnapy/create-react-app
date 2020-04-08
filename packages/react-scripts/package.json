@@ -1,7 +1,7 @@
 {
   "name": "timeflies-react-scripts",
   "version": "3.4.1",
-  "description": "Configuration and scripts for Create React App (fork).",
+  "description": "Fork of react-scripts for the project timeflies",
   "repository": {
     "type": "git",
     "url": "https://github.com/Chnapy/create-react-app.git",
