@@ -1,4 +1,4 @@
-# react-scripts
+# timeflies-react-scripts
 
 > ## This project is forked for [timeflies](https://github.com/Chnapy/timeflies)
 >
