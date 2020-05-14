@@ -6,6 +6,7 @@
 >
 > - Webpack config: do not inject JSON files in the bundle, they are loaded by the file-loader in `static/media/`. By importing them we get a path, like for images.
 > - Typescript config: `resolveJSONModule` set to `false`, to get `string` as JSON import type. Also `tsconfig.json` is not written anymore on start, even if the config do not respect wanted values. Still have console logs.
+> - Remove babel default config, require use of a `babelrc` config file.
 
 Create React apps with no build configuration.
 
